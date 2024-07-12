@@ -21,12 +21,12 @@ export const CarDetail = () => {
       .catch(error => {
         console.log(error);
       });
-  }, []);
+  }, [API_URL]);
 
   const navigate = useNavigate();
 
   function purchaseBTN() {
-    if (localStorage.getItem('user') == null) {
+    if (localStorage.getItem('user') === null) {
       navigate('/Login');
     } else {
       let userDetails = JSON.parse(localStorage.getItem('user'));
@@ -39,7 +39,7 @@ export const CarDetail = () => {
         }],
       };
 
-      if (localStorage.getItem('cart') == null) {
+      if (localStorage.getItem('cart') === null) {
         localStorage.setItem('cart', JSON.stringify(cartData));
         fetch(AddToCart_API, {
           method: 'POST',
@@ -54,7 +54,7 @@ export const CarDetail = () => {
             navigate('/cart');
           })
           .catch(error => { console.log(error) });
-      } else if (userID == JSON.parse(localStorage.getItem('cart')).createdBy) {
+      } else if (userID === JSON.parse(localStorage.getItem('cart')).createdBy) {
         let foundedCart = JSON.parse(localStorage.getItem('cart'));
         console.log(foundedCart);
         for (let i = 0; i < foundedCart.cars.length; i++) {
@@ -117,28 +117,28 @@ export const CarDetail = () => {
                 </header>
 
                 <div className="row">
-  <div className="col-md-6">
-    <a href={data.car.image[0]} target="_blank">
-      <img src={`${data.car.image[0]}`} className="img-responsive" alt="" />
-    </a>
-  </div>
+                  <div className="col-md-6">
+                    <a href={data.car.image[0]} target="_blank" rel="noreferrer">
+                      <img src={`${data.car.image[0]}`} className="img-responsive" alt="" />
+                    </a>
+                  </div>
 
-  <div className="col-md-6">
-    <div className="row">
-      {data.car.image &&
-        data.car.image.length > 0 &&
-        data.car.image.map((item, index) => (
-          <div key={index} className="col-md-4 col-xs-6">
-            <a href={item} target="_blank">
-              <img src={`${item}`} className="img-responsive" alt={`Image ${index}`} />
-            </a>
-          </div>
-        ))}
-      {(!data.car.image || data.car.image.length === 0) && (
-        <p>No images available. Data: {JSON.stringify(data)}</p>
-      )}
-    </div>
-    <h2>price: {data.car.price}</h2>
+                  <div className="col-md-6">
+                    <div className="row">
+                      {data.car.image &&
+                        data.car.image.length > 0 &&
+                        data.car.image.map((item, index) => (
+                          <div key={index} className="col-md-4 col-xs-6">
+                            <a href={item} target="_blank" rel="noreferrer">
+                              <img src={`${item}`} className="img-responsive" alt={`Car Image ${index}`} />
+                            </a>
+                          </div>
+                        ))}
+                      {(!data.car.image || data.car.image.length === 0) && (
+                        <p>No images available. Data: {JSON.stringify(data)}</p>
+                      )}
+                    </div>
+                    <h2>price: {data.car.price}</h2>
                     <br />
                     HorsePower: {data.car.horsePower} HP
                     <br />
@@ -160,14 +160,14 @@ export const CarDetail = () => {
 
                 <br />
                 {localStorage.getItem('user') !== null ? (
-                  JSON.parse(localStorage.getItem('user')).foundedUser.role == "User" ? (
+                  JSON.parse(localStorage.getItem('user')).foundedUser.role === "User" ? (
                     <>
                       <button id="purchase" onClick={purchaseBTN}>Purchase</button>
                     </>
                   ) : (<></>)
                 ) : (<></>)}
                 {localStorage.getItem('user') !== null ? (
-                  JSON.parse(localStorage.getItem('user')).foundedUser.role == "Admin" ? (
+                  JSON.parse(localStorage.getItem('user')).foundedUser.role === "Admin" ? (
                     <>
                       <button id="delete" className="mx-3 bg-danger" onClick={deleteBTN}>delete</button>
                       <button id="update" className="mx-3 bg-warning" onClick={updateBTN}>update</button>
