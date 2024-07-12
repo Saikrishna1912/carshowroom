@@ -21,7 +21,7 @@ pipeline {
         
         stage('Install Dependencies') {
             steps {
-                withEnv(['CI=yarn build']) {
+                withEnv(['CI=false']) {
                     sh 'npm install'
                 }
             }
