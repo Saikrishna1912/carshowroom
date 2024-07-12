@@ -6,9 +6,9 @@ pipeline {
     }
     
     environment {
-        FRONTEND_REPO = 'https://github.com/Saikrishna1912/carshowroom.git'
+        FRONTEND_REPO = 'https://github.com/Sujithsai08/carshowroom_frontend.git'
         FRONTEND_BRANCH = 'main'
-        SONAR_URL = 'http://3.109.213.179:9000/' // Replace this URL with your SonarQube server URL
+        SONAR_URL = 'http://18.206.184.8:9000' // Replace this URL with your SonarQube server URL
         REGISTRY_CREDENTIALS = credentials('docker-cred')
     }
 
@@ -21,7 +21,9 @@ pipeline {
         
         stage('Install Dependencies') {
             steps {
-                sh 'npm install'
+                withEnv(['CI=false']) {
+                    sh 'npm install'
+                }
             }
         }
         
@@ -41,7 +43,7 @@ pipeline {
         
         stage('Build and Push Docker Image') {
             environment {
-                DOCKER_IMAGE = "saikrishna1912/carshowroom:${env.BUILD_NUMBER}"
+                DOCKER_IMAGE = "sujithsai/carshowroom:${env.BUILD_NUMBER}"
             }
             steps {
                 script {
@@ -56,13 +58,13 @@ pipeline {
         
         stage('Update Deployment File') {
             environment {
-                GIT_REPO_NAME = "carshowroom"
-                GIT_USER_NAME = "Saikrishna1912"
+                GIT_REPO_NAME = "carshowroom_frontend"
+                GIT_USER_NAME = "Sujithsai08"
             }
             steps {
                 withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
                     sh '''
-                    git config user.email "saikrishna.galipelly@gmail.com"
+                    git config user.email "sujithsai.sirimalla33@gmail.com"
                     git config user.name "${GIT_USER_NAME}"
                     sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" manifests/deployment.yaml
                     git add manifests/deployment.yaml
