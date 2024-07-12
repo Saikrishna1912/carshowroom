@@ -1,13 +1,3 @@
-Here are some fixes for your React component code:
-
-1. Ensure `localStorage` gets a user with a `foundedUser` property.
-2. Use proper `HTMLFor` attributes in the label tags instead of `for`.
-3. Ensure the correct file type is selected in the `fetch` API call.
-4. Improve the `errorMessage` display logic to correctly handle errors.
-
-Here is the updated code with the fixes:
-
-```javascript
 import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import { Header } from "../Header/Header";
@@ -194,5 +184,14 @@ export const Admin = () => {
               <button type="submit">Submit</button>
             </form>
 
-            <div>
-             
+             <div>
+              {errorMessage && <p className="text-danger">{errorMessage}</p>}
+              {/* Other code */}
+            </div>
+          </div>
+        </section>
+      </div>
+      <Footer />
+    </>
+  );
+};
