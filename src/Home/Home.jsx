@@ -3,7 +3,6 @@ import axios from 'axios';
 import { Header } from "../Header/Header";
 import { Footer } from '../Footer/Footer';
 import { NavLink } from "react-router-dom";
-import { CarDetail } from "../Cars/CarDetail";
 
 const API_URL = 'https://carshowroom-backend.onrender.com/api/v1/car/';
 
@@ -78,9 +77,7 @@ export const Home = () => {
             </header>
             <p>
               {/* Your about us content */}
-
-              
-Welcome to CarHorizonX, where passion for automobiles meets unparalleled service. Since 2010, we've been a trusted destination in Goa, offering a diverse range of vehicles to suit every lifestyle. Our commitment to quality is unwavering, ensuring that each car in our showroom meets the highest standards of performance and reliability. At CarHorizonX, integrity is at the core of what we do — transparent transactions and honest advice define our customer interactions. We take pride in our role as a local institution, contributing to the automotive landscape of Goa. Our knowledgeable team is dedicated to providing expert guidance, making your car-buying experience seamless. Discover the joy of driving with us; our passion goes beyond selling cars to delivering exceptional automotive experiences. Your satisfaction is our priority, and we look forward to serving you at CarHorizonX. Visit us today at Goa,Calangute and embark on a journey towards your dream car.      
+              Welcome to CarHorizonX, where passion for automobiles meets unparalleled service. Since 2010, we've been a trusted destination in Goa, offering a diverse range of vehicles to suit every lifestyle. Our commitment to quality is unwavering, ensuring that each car in our showroom meets the highest standards of performance and reliability. At CarHorizonX, integrity is at the core of what we do — transparent transactions and honest advice define our customer interactions. We take pride in our role as a local institution, contributing to the automotive landscape of Goa. Our knowledgeable team is dedicated to providing expert guidance, making your car-buying experience seamless. Discover the joy of driving with us; our passion goes beyond selling cars to delivering exceptional automotive experiences. Your satisfaction is our priority, and we look forward to serving you at CarHorizonX. Visit us today at Goa,Calangute and embark on a journey towards your dream car.
             </p>
           </div>
         </section>
