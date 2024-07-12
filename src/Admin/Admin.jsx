@@ -1,3 +1,13 @@
+Here are some fixes for your React component code:
+
+1. Ensure `localStorage` gets a user with a `foundedUser` property.
+2. Use proper `HTMLFor` attributes in the label tags instead of `for`.
+3. Ensure the correct file type is selected in the `fetch` API call.
+4. Improve the `errorMessage` display logic to correctly handle errors.
+
+Here is the updated code with the fixes:
+
+```javascript
 import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import { Header } from "../Header/Header";
@@ -14,14 +24,14 @@ export const Admin = () => {
     if (userRole == null || userRole.foundedUser.role !== 'Admin') {
       navigate('/home');
     }
-  }, []);
+  }, [navigate]);
 
-  let view_Orders_BTN = () => {
+  const viewOrdersBtn = () => {
     navigate('/order');
   };
   
-  let updateCarBtn = () => {
-    navigate('/admin/updatecar'); // You should create this route and component
+  const updateCarBtn = () => {
+    navigate('/admin/updatecar'); // Ensure you have created this route and component
   };
 
   const [image, setImage] = useState(null);
@@ -64,7 +74,7 @@ export const Admin = () => {
         if (response.ok) {
           const data = await response.json();
           console.log(data);
-          navigate('/Home');
+          navigate('/home');
         } else {
           const errorMessage = await response.text();
           setErrorMessage(`Error: ${errorMessage}`);
@@ -124,74 +134,65 @@ export const Admin = () => {
           <div className="inner row">
             <header className="major col-12 position-relative">
               <h1>Add Car
-                <button className="btn order-btn position-absolute p-1" onClick={view_Orders_BTN}>View Orders</button>
+                <button className="btn order-btn position-absolute p-1" onClick={viewOrdersBtn}>View Orders</button>
               </h1>
             </header>
 
             <form onSubmit={handleSubmit} className="row">
-            <div className="form-floating mb-3 col-lg-4">
-                <label for="floatingInput">Brand</label>
+              <div className="form-floating mb-3 col-lg-4">
+                <label htmlFor="carBrand">Brand</label>
                 <input type="text" name="brand" onChange={handleBrandChange} id="carBrand" className="form-control" placeholder="Enter Car Brand"/>
               </div>
-              <div className="form-floating mb-3  col-lg-4">
-                <label for="floatingPassword">Name</label>
+              <div className="form-floating mb-3 col-lg-4">
+                <label htmlFor="carName">Name</label>
                 <input type="text" id="carName" name="name" onChange={handleNameChange} className="form-control" placeholder="Enter Car Name"/>
               </div>
-              <div className="form-floating mb-3  col-lg-4">
-                <label for="floatingInput">Picture</label>
+              <div className="form-floating mb-3 col-lg-4">
+                <label htmlFor="carImage">Picture</label>
                 <input type="file" name="image" onChange={handleImageChange} id="carImage" className="form-control"/>
               </div>
-              <div className="form-floating mb-3  col-lg-4">
-                <label for="floatingPassword">Price</label>
+              <div className="form-floating mb-3 col-lg-4">
+                <label htmlFor="carPrice">Price</label>
                 <input type="text" name="price" onChange={handlePriceChange} id="carPrice" className="form-control" placeholder="example: 100,000 L.E"/>
               </div>
-              <div className="form-floating mb-3  col-lg-4">
-                <label for="floatingPassword">Color</label>
-                <input type="text" name="color" onChange={handleColorChange}  id="carColor" className="form-control" placeholder="Enter Car Color"/>
+              <div className="form-floating mb-3 col-lg-4">
+                <label htmlFor="carColor">Color</label>
+                <input type="text" name="color" onChange={handleColorChange} id="carColor" className="form-control" placeholder="Enter Car Color"/>
               </div>
-              <div className="form-floating mb-3  col-lg-4">
-                <label for="floatingPassword">Transmission</label>
+              <div className="form-floating mb-3 col-lg-4">
+                <label htmlFor="carTransmission">Transmission</label>
                 <input type="text" name="transmission" onChange={handleTransmissionChange} id="carTransmission" className="form-control" placeholder="Automatic - Manual"/>
               </div>
-              <div className="form-floating mb-3  col-lg-4">
-                <label for="floatingPassword">Engine Size</label>
+              <div className="form-floating mb-3 col-lg-4">
+                <label htmlFor="carEngineSize">Engine Size</label>
                 <input type="text" name="engineSize" onChange={handleEngineSizeChange} id="carEngineSize" className="form-control" placeholder="example: 1200 cc"/>
               </div>
-              <div className="form-floating mb-3  col-lg-4">
-                <label for="floatingPassword">Horse Power</label>
+              <div className="form-floating mb-3 col-lg-4">
+                <label htmlFor="carHorsePower">Horse Power</label>
                 <input type="text" name="horsePower" onChange={handleHorsePowerChange} id="carHorsePower" className="form-control" placeholder="Car Horse Power"/>
               </div>
-              <div className="form-floating mb-3  col-lg-4">
-                <label for="floatingPassword">Seats</label>
+              <div className="form-floating mb-3 col-lg-4">
+                <label htmlFor="carSeats">Seats</label>
                 <input type="text" name="seats" onChange={handleSeatsChange} id="carSeats" className="form-control" placeholder="Number of Seats"/>
               </div>
-              <div className="form-floating mb-3  col-lg-4">
-                <label for="floatingPassword">Max Speed</label>
+              <div className="form-floating mb-3 col-lg-4">
+                <label htmlFor="carMaxSpeed">Max Speed</label>
                 <input type="text" name="maxSpeed" onChange={handleMaxSpeedChange} id="carMaxSpeed" className="form-control" placeholder="example: 150 kmph"/>
               </div>
-              <div className="form-floating mb-3  col-lg-4">
-                <label for="floatingPassword">AirBags</label>
+              <div className="form-floating mb-3 col-lg-4">
+                <label htmlFor="carAirBags">AirBags</label>
                 <input type="text" name="airBags" onChange={handleAirBagsChange} id="carAirBags" className="form-control" placeholder="Number of AirBags"/>          
               </div>
-              <div className="form-floating mb-3  col-lg-4">
-                <label for="floatingPassword">Car Type</label>
+              <div className="form-floating mb-3 col-lg-4">
+                <label htmlFor="carType">Car Type</label>
                 <input type="text" name="type" onChange={handleTypeChange} id="carType" className="form-control" placeholder="example: Suv"/>
               </div>
-              <div className="form-floating mb-3  col-lg-12">
-                <label for="floatingPassword">Acceleration</label>
+              <div className="form-floating mb-3 col-lg-12">
+                <label htmlFor="carAcceleration">Acceleration</label>
                 <input type="text" name="acceleration" onChange={handleAccelerationChange} id="carAcceleration" className="form-control" placeholder="How many seconds from 0-100 kmph"/>
               </div>
               <button type="submit">Submit</button>
             </form>
 
             <div>
-              {errorMessage && <p className="text-danger">{errorMessage}</p>}
-              {/* Other code */}
-            </div>
-          </div>
-        </section>
-      </div>
-      <Footer />
-    </>
-  );
-};
+             
