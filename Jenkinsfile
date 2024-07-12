@@ -21,9 +21,7 @@ pipeline {
         
         stage('Install Dependencies') {
             steps {
-                withEnv(['CI=false']) {
-                    sh 'npm install'
-                }
+                sh 'npm install'
             }
         }
         
